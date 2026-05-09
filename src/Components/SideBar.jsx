@@ -94,7 +94,7 @@ const SideBar = () => {
   ];
 
   return (
-    <aside className="h-full w-[350px] bg-neutral-100 px-8 py-10">
+    <aside className=" min-h-screen w-[350px] bg-neutral-100 px-8 py-10">
       {/* Logo */}
       <div className="mb-14 flex items-center gap-3">
         <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-md shadow-violet-200/50 ring-1 ring-violet-100">
