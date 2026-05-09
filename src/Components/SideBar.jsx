@@ -1,5 +1,7 @@
 import logo from "../assets/logo.png";
 import profilePicture from "../assets/profilePicture.webp";
+import { ArrowUpToLine } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   ChevronDown,
   Plus,
@@ -8,6 +10,7 @@ import {
   Bookmark,
   LayoutGrid,
   ClipboardList,
+  Folder,
 } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import {
@@ -25,16 +28,73 @@ const SideBar = () => {
   const menuItems = [
     {
       id: 1,
-      title: "Dashborad",
+      title: "Dashboard",
       icon: LayoutGrid,
+      url: "/",
     },
-    { id: 2, title: "Tasks", icon: CalendarCheck },
-    { id: 3, title: "Requests", icon: Bookmark },
-    { id: 4, title: "Reports", icon: ClipboardList },
+    {
+      id: 2,
+      title: "Tasks",
+      icon: CalendarCheck,
+      url: "/tasks",
+    },
+    {
+      id: 3,
+      title: "Requests",
+      icon: Bookmark,
+      url: "/requests",
+    },
+    {
+      id: 4,
+      title: "Reports",
+      icon: ClipboardList,
+      url: "/reports",
+    },
+  ];
+  const deadlines = [
+    {
+      id: 1,
+      title: "Beling Mobile App",
+      url: "/projects/mobile-app",
+      icon: ArrowUpToLine,
+    },
+    {
+      id: 2,
+      title: "Landingpage Beling",
+      url: "/projects/landingpage",
+      icon: ArrowUpToLine,
+    },
+    {
+      id: 3,
+      title: "Beling Admin CMS",
+      url: "/projects/admin-cms",
+      icon: ArrowUpToLine,
+    },
+  ];
+
+  const projects = [
+    {
+      id: 1,
+      title: "Emura Project",
+      url: "/projects/emura-project",
+      icon: Folder,
+    },
+    {
+      id: 2,
+      title: "Weekly Shot",
+      url: "/projects/weekly-shot",
+      icon: Folder,
+    },
+    {
+      id: 3,
+      title: "Daily Exploration",
+      url: "/projects/daily-exploration",
+      icon: Folder,
+    },
   ];
 
   return (
-    <aside className="h-screen w-[350px] bg-neutral-100 px-8 py-10">
+    <aside className="h-full w-[350px] bg-neutral-100 px-8 py-10">
       {/* Logo */}
       <div className="mb-14 flex items-center gap-3">
         <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-md shadow-violet-200/50 ring-1 ring-violet-100">
@@ -91,29 +151,104 @@ const SideBar = () => {
       </Button>
 
       {/* Main Menu */}
+      {/* Main Menu */}
       <div className="mt-12 ml-1">
-        <h3 className="text-xs mb-3 font-semibold tracking-[0.2em] text-neutral-400 uppercase">
+        {/* Heading */}
+        <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
           Main Menu
         </h3>
-        {/* items in menu */}
-        {menuItems.map((item) => {
-          const Icon = item.icon;
-          const Title = item.title;
-          return (
-            <div key={item.id}>
-              <button
+
+        {/* Items In Menu */}
+        <div className="space-y-1">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <Link
                 key={item.id}
+                to={item.url}
                 className="group flex w-full items-center gap-[10px] rounded-xl px-4 py-3 text-neutral-500 transition-all duration-200 hover:bg-violet-100/70 hover:text-violet-700"
               >
                 {/* Icon */}
                 <Icon size={22} className="transition-colors duration-200" />
 
                 {/* Title */}
-                <span className="text-[15px] font-medium">{Title}</span>
-              </button>
-            </div>
-          );
-        })}
+                <span className="text-[15px] font-medium">{item.title}</span>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Bottom Line */}
+        <div className="mt-5 border-b border-neutral-200"></div>
+      </div>
+      {/* incoming deadline */}
+      <div className="mt-6 ml-1">
+        {/* Heading */}
+        <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+          Incoming Deadline
+        </h3>
+
+        {/* Items */}
+        <div className="space-y-2">
+          {deadlines.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <Link
+                to={item.url}
+                key={item.id}
+                className="group flex w-full items-center gap-2 rounded-xl px-4 py-3 text-neutral-500 transition-all duration-200 hover:bg-violet-100/70 hover:text-violet-700"
+              >
+                {/* Icon */}
+                <Icon
+                  size={22}
+                  strokeWidth={1.8}
+                  className="text-neutral-400 transition-colors duration-200 group-hover:text-violet-700"
+                />
+
+                {/* Title */}
+                <span className="text-[15px] font-medium">{item.title}</span>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Bottom line */}
+        <div className="mt-8 border-b border-neutral-200"></div>
+      </div>
+
+      {/* My Projects */}
+      <div className="mt-6 ml-1">
+        {/* Heading */}
+        <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+          My Project&apos;s
+        </h3>
+
+        {/* Items */}
+        <div className="space-y-1">
+          {projects.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.id}
+                to={item.url}
+                className="group flex w-full items-center gap-4 rounded-xl px-4 py-3 text-neutral-500 transition-all duration-200 hover:bg-violet-100/70 hover:text-violet-700"
+              >
+                {/* Icon */}
+                <Icon
+                  size={22}
+                  strokeWidth={1.8}
+                  className="text-neutral-400 transition-colors duration-200 group-hover:text-violet-700"
+                />
+
+                {/* Title */}
+                <span className="text-[15px] font-medium">{item.title}</span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </aside>
   );
